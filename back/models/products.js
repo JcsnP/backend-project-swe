@@ -25,7 +25,7 @@ module.exports = class Product{
             );
         }else{
             return db.execute(
-                'insert into products (p_name, p_descrip , p_qty, p_price , p_img, p_color, p_brand_id ) values(?,?,?,?,?,?,?)',
+                'insert into products(p_name, p_descrip , p_qty, p_price , p_img, p_color, p_brand_id ) values(?,?,?,?,?,?,?)',
                 [this.p_name, this.p_descrip , this.p_qty, this.p_price , this.p_img , this.p_color , this.p_brand_id]
             );
         }
@@ -51,5 +51,4 @@ module.exports = class Product{
             [p_id]
         );
     }
-
 }
