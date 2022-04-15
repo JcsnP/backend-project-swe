@@ -1,0 +1,13 @@
+.brandLogo {
+    color: #525BE8 !important;
+    font-weight: bold !important;
+    font-size: 1.4em !important;
+}
+
+.navbar {
+    border-bottom: 1px solid #E6E6E6 !important;
+}
+
+.btn-admin {
+    color: #FFF !important;
+}

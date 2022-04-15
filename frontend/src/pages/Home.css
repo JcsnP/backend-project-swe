@@ -1,0 +1,16 @@
+.product_img {
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.product_img:hover {
+    transform: translate(0, -20px);
+}
+
+.price {
+    font-weight: bold !important;
+}
+
+span {
+    font-weight: bold;
+}

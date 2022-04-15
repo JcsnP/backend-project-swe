@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600;700&display=swap');
+
+#dropdown-basic-button {
+    background-color: transparent;
+    color: #000;
+    border: transparent;
+    width: 200%;
+    font-family: 'IBM Plex Sans Thai', sans-serif !important;
+    text-align: left;
+}
+
+#dropdown-basic-button:hover {
+    background-color: #F4F4F4;
+}
