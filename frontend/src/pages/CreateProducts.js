@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import { Redirect } from 'react-router';
-import { Container, Form, Row, Col, Button } from 'react-bootstrap';
+import { Container, Form, Row, Col, Button, ProgressBar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class CreateProducts extends React.Component {
   constructor(props) {
@@ -39,13 +40,18 @@ class CreateProducts extends React.Component {
     });
   }
 
+  backHome = () => {
+    return <Link to="/admin" />
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect to={this.state.redirect} />
     }
     return (
-        <Container>
-        <Form onSubmit={this.handleSubmit}>
+        <Container className="mt-5">
+        <h1>เพิ่มสินค้า</h1>
+        <Form onSubmit={this.handleSubmit} className="mt-3">
                 <Form.Group className="mb-3"    >
                     <Form.Label>Product Name</Form.Label>
                     <Form.Control type="text" placeholder="ชื่อสินค้า" name="p_name" onChange={this.handleChange}/>
@@ -88,9 +94,11 @@ class CreateProducts extends React.Component {
                 </Row> 
                 <Row>
                     <Col>
-                        <Button variant="danger" style={{width: '100%'}}>
-                            <a href="/admin" style={{color: "#FFF"}}>Cancel</a>
-                        </Button>
+                        <Link to="/admin" className="btn-danger">
+                            <Button variant="danger"  style={{width: '100%'}}>
+                                Cancel
+                            </Button>
+                        </Link>
                     </Col>
                     <Col>
                         <Button variant="primary" type="submit" style={{width: '100%'}}>

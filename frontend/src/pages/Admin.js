@@ -41,6 +41,7 @@ class Admin extends React.Component {
         return (
             <Container className="mt-5">
                 <h1>รายการสินค้า</h1>
+                <p>จำนวน {this.state.data.length} ชิ้น</p>
                 <Link to="/create-products" style={{width: '20%', marginBottom: '6px', float: 'right'}} className="btn btn-info">Create Product</Link>
                 <Table striped bordered hover>
                     <thead>

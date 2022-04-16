@@ -13,8 +13,9 @@ import Footer from './components/Footer';
 import Admin from './pages/Admin';
 import CreateProducts from './pages/CreateProducts';
 import UpdateProducts from './pages/UpdateProducts';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ProductDetails from './pages/ProductDetails';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// <Route path="/product-details" component={ProductDetails} />
 class App extends React.Component {
 
   render() {
@@ -23,6 +24,7 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path="/update-products/:p_id" component={UpdateProducts} />
+          
           <Route path="/create-products">
             <CreateProducts />
           </Route>

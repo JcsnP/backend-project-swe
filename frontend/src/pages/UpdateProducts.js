@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class UpdateProducts extends React.Component {
     constructor(props){
@@ -15,7 +16,11 @@ class UpdateProducts extends React.Component {
         p_price: 0,
         p_color: '', 
         p_brand_id: '',
-        redirect: null
+        brand_name: '',
+        redirect: null,
+        brands: [{
+
+        }]
       }
     }
 
@@ -31,10 +36,13 @@ class UpdateProducts extends React.Component {
           p_price: data.p_price,
           p_color: data.p_color, 
           p_brand_id: data.p_brand_id,
+          brand_name: data.brand_name
         });
       }).catch(error => {
         console.log(error);
       });
+
+      this.getBrand();
     }
 
     handleChange = (e) => {
@@ -44,6 +52,14 @@ class UpdateProducts extends React.Component {
       this.setState({
         [name]: value
       });
+    }
+
+    getBrand = () => {
+        axios.get("http://localhost:8081/admin/get-brands").then((res) => {
+            this.setState({ brands: res.data.data });
+        }).catch((error) => {
+            console.log(error);
+        });
     }
 
     handleSubmit = (e) => {
@@ -62,6 +78,7 @@ class UpdateProducts extends React.Component {
         if (this.state.redirect) {
           return <Redirect to={this.state.redirect} />
         }
+        console.log('brand: ', this.state.p_brand_id);
         return(
             <Container className="mt-5 mb-5">
                 <h1>แก้ไขสินค้า</h1>
@@ -102,15 +119,23 @@ class UpdateProducts extends React.Component {
                         <Col>
                             <Form.Group className="mb-3">
                                 <Form.Label>Product Brand</Form.Label>
-                                <Form.Control type="text" placeholder="แบรนด์" value={this.state.p_brand_id} name="p_brand" onChange={this.handleChange}/>
+                                <Form.Control as="select" name="p_brand_id" onChange={this.handleChange} >
+                                    {
+                                        this.state.brands.map(item => (
+                                            <option value={item.brand_id}>{item.brand_name}</option>
+                                    ))}
+                                </Form.Control>
+            
                             </Form.Group>
                         </Col>
                     </Row> 
                     <Row>
                         <Col>
-                            <Button variant="danger" style={{width: '100%'}}>
-                                <a href="/admin" style={{color: "#FFF"}}>Cancel</a>
-                            </Button>
+                          <Link to="/admin" className="btn-danger">
+                              <Button variant="danger"  style={{width: '100%'}}>
+                                  Cancel
+                              </Button>
+                          </Link>
                         </Col>
                         <Col>
                             <Button variant="primary" type="submit" style={{width: '100%'}}>
@@ -125,3 +150,5 @@ class UpdateProducts extends React.Component {
 }
 
 export default UpdateProducts;
+
+// <Form.Control type="text" placeholder="แบรนด์" value={this.state.p_brand_id} name="p_brand_id" onChange={this.handleChange}/>

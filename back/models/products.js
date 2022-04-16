@@ -14,7 +14,7 @@ module.exports = class Product{
     }
 
     static findAll(){
-        return db.execute("select * from products");
+        return db.execute("SELECT products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name FROM products INNER JOIN brand ON products.p_brand_id = brand.brand_id");
     }
 
     save(){
@@ -30,10 +30,10 @@ module.exports = class Product{
             );
         }
     }
-
+    //'select * from products where p_id = ?',
     static findById(p_id){
         return db.execute(
-            'select * from products where p_id = ?',
+            'select products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name from products INNER join brand on products.p_brand_id = brand.brand_id where p_id = ?',
             [p_id]
         );
     }
@@ -49,6 +49,12 @@ module.exports = class Product{
         return db.execute(
             'delete from products where p_id = ?',
             [p_id]
+        );
+    }
+
+    static getBrands() {
+        return db.execute(
+            'SELECT * FROM `brand`'
         );
     }
 }

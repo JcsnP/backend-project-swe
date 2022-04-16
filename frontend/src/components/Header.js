@@ -8,7 +8,9 @@ class Header extends React.Component {
         return (
             <Navbar className="navbar">
                 <Container>
-                    <Navbar.Brand href="/" className="brandLogo">Phone Shop</Navbar.Brand>
+                    <Link to="/">
+                        <Navbar.Brand className="brandLogo">Phone Shop</Navbar.Brand>
+                    </Link>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
                         <Navbar.Text className="btn btn-dark" style={{color: "#FFF"}}>

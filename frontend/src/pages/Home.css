@@ -4,7 +4,8 @@
 }
 
 .product_img:hover {
-    transform: translate(0, -20px);
+    /*transform: translate(0, -20px);*/
+    transform: scale(1.2);
 }
 
 .price {

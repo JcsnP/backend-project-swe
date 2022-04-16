@@ -103,3 +103,16 @@ exports.deleteProduct = (req, res, next) => {
         });
     });
 }
+
+exports.getAllBrands = (req, res, next) => {
+    Product.getBrands().then(products => {
+        res.status(200).json({
+            "message": "success",
+            "data": products[0]
+        });
+    }).catch(error => {
+        res.status(500).json({
+            "message": error
+        });
+    });
+}
