@@ -15,8 +15,12 @@ class CreateProducts extends React.Component {
       p_img:'',
       p_color: '', 
       p_brand_id: '',
-      redirect: null
+      redirect: null,
+      brands: [{
+
+      }]
     }
+    this.getBrand();
   }
 
   handleChange = (e) => {
@@ -37,6 +41,14 @@ class CreateProducts extends React.Component {
       }
     }).catch(error => {
       console.log(error);
+    });
+  }
+
+  getBrand = () => {
+    axios.get("http://localhost:8081/admin/get-brands").then((res) => {
+        this.setState({ brands: res.data.data });
+    }).catch((error) => {
+        console.log(error);
     });
   }
 
@@ -88,7 +100,12 @@ class CreateProducts extends React.Component {
                     <Col>
                         <Form.Group className="mb-3">
                             <Form.Label>Product Brand</Form.Label>
-                            <Form.Control type="text" placeholder="แบรนด์" name="p_brand_id" onChange={this.handleChange}/>
+                            <Form.Control as="select" name="p_brand_id" onChange={this.handleChange} >
+                              {
+                                  this.state.brands.map(item => (
+                                      <option value={item.brand_id}>{item.brand_name}</option>
+                              ))}
+                          </Form.Control>
                         </Form.Group>
                     </Col>
                 </Row> 

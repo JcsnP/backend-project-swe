@@ -25,11 +25,19 @@ class Home extends React.Component {
     }
 
     componentDidMount() {
-        this.getData()
+        this.getData();
     }
 
     getData = () => {
         axios.get("http://localhost:8081/admin/products").then((res) => {
+            this.setState({ data: res.data.data });
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
+    getDataByBrand = (brandID) => {
+        axios.get("http://localhost:8081/admin/brand/"+ brandID).then((res) => {
             this.setState({ data: res.data.data });
         }).catch((error) => {
             console.log(error);
