@@ -8,7 +8,7 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            p_id: '',
+            brand_id: null,
             brands: [{
 
             }]
@@ -27,8 +27,7 @@ class Menu extends React.Component {
             [name]: value
         });
 
-        // send data to home.js
-        <Home />
+        
     }
 
     getBrand = () => {
@@ -40,12 +39,12 @@ class Menu extends React.Component {
     }
 
     render() {
-        console.log(this.state.p_id);
         return(
-            <div>
+            <div> 
                 <Navbar>
                     <Container>
-                        <Form.Control as="select" className="mt-2 mb-2" name="p_id" style={{width: '12%'}} onChange={this.handleChange}>
+                        <Form.Control as="select" className="mt-2 mb-2" name="brand_id" style={{width: '12%'}} onChange={this.handleChange}>
+                            <option value={0}>All</option>
                             {
                                 this.state.brands.map(item => (
                                     <option value={item.brand_id} >{item.brand_name}</option>
@@ -54,6 +53,7 @@ class Menu extends React.Component {
                         </Form.Control>
                     </Container>
                 </Navbar>
+                <Home brand_id={this.state.brand_id} />
             </div>
         );
     }

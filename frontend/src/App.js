@@ -14,6 +14,7 @@ import Admin from './pages/Admin';
 import CreateProducts from './pages/CreateProducts';
 import UpdateProducts from './pages/UpdateProducts';
 import ProductDetails from './pages/ProductDetails';
+import Menu from './components/Menu';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 // <Route path="/product-details" component={ProductDetails} />
 class App extends React.Component {
@@ -24,7 +25,6 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route path="/update-products/:p_id" component={UpdateProducts} />
-          
           <Route path="/create-products">
             <CreateProducts />
           </Route>
@@ -32,7 +32,7 @@ class App extends React.Component {
             <Admin />
           </Route>
           <Route path="/">
-            <Home />
+            <Menu />
           </Route>
         </Switch>
         <Footer />

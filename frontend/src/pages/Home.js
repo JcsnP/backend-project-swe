@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Container, Modal, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import './Home.css';
 import Menu from '../components/Menu';
 // import ProductDetails from './ProductDetails';
@@ -20,12 +20,24 @@ class Home extends React.Component {
             show: false, 
             setShow: false
         }
+
         this.handleShow = this.handleShow.bind(this);
         this.handleClose = this.handleClose.bind(this);
     }
 
     componentDidMount() {
-        this.getData();
+        this.getData();    
+    }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.brand_id !== prevProps.brand_id) {
+            this.setState({ brandID: this.props.brand_id });
+            if(Number(this.props.brand_id) === 0) {
+                this.getData();
+            } else {
+                this.getDataByBrand();
+            }
+        }
     }
 
     getData = () => {
@@ -36,8 +48,8 @@ class Home extends React.Component {
         });
     }
 
-    getDataByBrand = (brandID) => {
-        axios.get("http://localhost:8081/admin/brand/"+ brandID).then((res) => {
+    getDataByBrand = () => {
+        axios.get("http://localhost:8081/admin/brand/"+ this.props.brand_id).then((res) => {
             this.setState({ data: res.data.data });
         }).catch((error) => {
             console.log(error);
@@ -103,19 +115,10 @@ class Home extends React.Component {
         
     }
 
-    /*
-    <Button variant="secondary" onClick={() => {<ProductDetails productDetails={'hi'} />}}>
-        <Link to="/product-details" >
-            Full Details
-        </Link>
-    </Button>
-    */
-
     render() {
-        console.log(this.state.data);
+        console.log('the props: ', this.props.brand_id , ' this state ', this.state.brandID);
         return (
             <>
-                <Menu />
                 <this.showModal />
                 <Container className="mt-5">
                     <h1>สินค้าทั้งหมด</h1>
