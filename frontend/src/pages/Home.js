@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Container, Modal, Row, Col, Card, Button } from "react-bootstrap";
 // import { Link } from 'react-router-dom';
 import './Home.css';
-import Menu from '../components/Menu';
+// import Menu from '../components/Menu';
 // import ProductDetails from './ProductDetails';
 
 class Home extends React.Component {
@@ -31,7 +31,8 @@ class Home extends React.Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.brand_id !== prevProps.brand_id) {
-            this.setState({ brandID: this.props.brand_id });
+            console.log('volk')
+            // this.setState({ brandID: this.props.brand_id });
             if(Number(this.props.brand_id) === 0) {
                 this.getData();
             } else {
@@ -52,18 +53,6 @@ class Home extends React.Component {
         axios.get("http://localhost:8081/admin/brand/"+ this.props.brand_id).then((res) => {
             this.setState({ data: res.data.data });
         }).catch((error) => {
-            console.log(error);
-        });
-    }
-
-    handleDelete = (product_id) => {
-        console.log(product_id);
-        axios.get('http://localhost:8081/admin/delete-products?product_id=' + product_id).then(res => {
-            console.log(res.data);
-            if (res.data.result) {
-                this.getData();
-            }
-        }).catch(error => {
             console.log(error);
         });
     }
@@ -117,7 +106,6 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log('the props: ', this.props.brand_id , ' this state ', this.state.brandID);
         return (
             <>
                 <this.showModal />
@@ -127,9 +115,9 @@ class Home extends React.Component {
                     <Row>
                         
                         { this.state.data.map(item => (
-                            <Col md={3} className="mb-3">
-                                <Card style={{ height: '100%', boxShadow: "2px 2px 1px #CFCFCF", cursor: "pointer" }} onClick={() => { this.setState({product: item}); this.handleShow();}} >
-                                    <div style={{overflow: 'hidden', height: '200px'}}>
+                            <Col md={3} className="mb-4">
+                                <Card className="card-container" style={{ height: '100%', boxShadow: "2px 2px 1px #CFCFCF", cursor: "pointer" }} onClick={() => { this.setState({product: item}); this.handleShow();}} >
+                                    <div className="product_img_container" style={{overflow: 'hidden', height: '200px'}}>
                                         <Card.Img variant="top" className="product_img" src={item.p_img} style={{ disply: 'block', margin: '0 auto', width: '100%' }} />
                                     </div>
                                     <Card.Body style={{width: '100%'}}>

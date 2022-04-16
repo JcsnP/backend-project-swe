@@ -8,7 +8,7 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            brand_id: null,
+            brand_id: 0,
             brands: [{
 
             }]
@@ -43,7 +43,7 @@ class Menu extends React.Component {
             <div> 
                 <Navbar>
                     <Container>
-                        <Form.Control as="select" className="mt-2 mb-2" name="brand_id" style={{width: '12%'}} onChange={this.handleChange}>
+                        <Form.Control as="select" className="mt-2 mb-2 selectBrand" name="brand_id" style={{width: '12%'}} onChange={this.handleChange}>
                             <option value={0}>All</option>
                             {
                                 this.state.brands.map(item => (

@@ -12,3 +12,15 @@
 #dropdown-basic-button:hover {
     background-color: #F4F4F4;
 }
+
+@media only screen and (max-width: 762px) {
+    .selectBrand {
+        width: 100% !important;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    .selectBrand {
+        width: 20% !important;
+    }
+}
