@@ -78,6 +78,7 @@ class Home extends React.Component {
     
 
     showModal = () => {
+        console.log(this.state.product);
         return(
             <Container>
                 <Modal show={this.state.show} onHide={this.handleClose}>

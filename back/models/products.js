@@ -40,7 +40,7 @@ module.exports = class Product{
 
     static findByIdBrand(p_brand_id){
         return db.execute(
-            'select * from products where p_brand_id = ?',
+            'select products.p_id, products.p_name, products.p_descrip, products.p_qty, products.p_price, products.p_img, products.p_color, products.p_brand_id, brand.brand_name from products INNER join brand on products.p_brand_id = brand.brand_id where p_brand_id = ?',
             [p_brand_id]
         )
     }
