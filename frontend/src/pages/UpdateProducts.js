@@ -4,6 +4,8 @@ import { Container, Form, Button, Row, Col } from 'react-bootstrap';
 import { Redirect } from 'react-router';
 import { Link } from 'react-router-dom';
 
+var current;
+
 class UpdateProducts extends React.Component {
     constructor(props){
       super(props);
@@ -41,7 +43,8 @@ class UpdateProducts extends React.Component {
       }).catch(error => {
         console.log(error);
       });
-
+   
+      current = this.state.p_brand_id;
       this.getBrand();
     }
 
@@ -78,7 +81,9 @@ class UpdateProducts extends React.Component {
         if (this.state.redirect) {
           return <Redirect to={this.state.redirect} />
         }
-        console.log('brand: ', this.state.p_brand_id);
+        current = this.state.p_brand_id;
+        
+        console.log('current: ', current);
         return(
             <Container className="mt-5 mb-5">
                 <h1>แก้ไขสินค้า</h1>
@@ -121,9 +126,15 @@ class UpdateProducts extends React.Component {
                                 <Form.Label>Product Brand</Form.Label>
                                 <Form.Control as="select" name="p_brand_id" onChange={this.handleChange} >
                                     {
-                                        this.state.brands.map(item => (
-                                            <option value={item.brand_id}>{item.brand_name}</option>
-                                    ))}
+                                        
+                                        this.state.brands.map(function(item, i) {
+                                            if(item.brand_id === current) {
+                                                return <option value={item.brand_id} selected>{item.brand_name}</option>
+                                            } else {
+                                                return <option value={item.brand_id}>{item.brand_name}</option>
+                                            }
+                                        })
+                                    }
                                 </Form.Control>
             
                             </Form.Group>
@@ -151,4 +162,10 @@ class UpdateProducts extends React.Component {
 
 export default UpdateProducts;
 
-// <Form.Control type="text" placeholder="แบรนด์" value={this.state.p_brand_id} name="p_brand_id" onChange={this.handleChange}/>
+/*
+                                    {
+                                        this.state.brands.map(item => (
+                                            <option value={item.brand_id}>{item.brand_name}</option>
+                                        ))
+                                    }
+*/
