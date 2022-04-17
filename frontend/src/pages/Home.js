@@ -66,18 +66,18 @@ class Home extends React.Component {
     showModal = () => {
         return(
             <Container>
-                <Modal show={this.state.show} onHide={this.handleClose}>
+                <Modal show={this.state.show} onHide={this.handleClose} size="lg" >
                     <Modal.Header closeButton>
                     <Modal.Title>{this.state.product.p_name}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-                            <Col>
-                                <img src={this.state.product.p_img} style={{ cursor: 'pointer' }}/>
+                            <Col sm={5} >
+                                <img src={this.state.product.p_img} style={{ cursor: 'pointer' }} className="card_img" />
                             </Col>
-                            <Col style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <Col sm={7}>
                                 <div>
-                                    <p>{this.state.product.p_descrip}</p>
+                                    <p style={{height: '15vh', overflow: 'auto'}}>{this.state.product.p_descrip}</p>
                                     <p><span>สี</span> {this.state.product.p_color}</p>
                                     <p><span>แบรนด์</span> {this.state.product.brand_name}</p>
                                     <p><span>สินค้าคงเหลือ</span> {Number(this.state.product.p_qty).toLocaleString()} ชิ้น</p>
