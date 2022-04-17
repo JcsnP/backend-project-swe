@@ -9,7 +9,7 @@ class Header extends React.Component {
             <Navbar className="navbar">
                 <Container>
                     <Link to="/">
-                        <Navbar.Brand className="brandLogo">Phone Shop</Navbar.Brand>
+                        <Navbar.Brand className="brandLogo">Mobile Shop</Navbar.Brand>
                     </Link>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
