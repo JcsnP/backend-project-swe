@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Container, Modal, Row, Col, Card, Button } from "react-bootstrap";
 // import { Link } from 'react-router-dom';
 import './Home.css';
-// import Menu from '../components/Menu';
+import Menu from '../components/Menu';
 // import ProductDetails from './ProductDetails';
 
 class Home extends React.Component {
@@ -31,7 +31,6 @@ class Home extends React.Component {
 
     componentDidUpdate(prevProps) {
         if(this.props.brand_id !== prevProps.brand_id) {
-            console.log('volk')
             // this.setState({ brandID: this.props.brand_id });
             if(Number(this.props.brand_id) === 0) {
                 this.getData();
@@ -67,7 +66,6 @@ class Home extends React.Component {
     
 
     showModal = () => {
-        console.log(this.state.product);
         return(
             <Container>
                 <Modal show={this.state.show} onHide={this.handleClose}>
@@ -91,7 +89,7 @@ class Home extends React.Component {
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary">
+                        <Button variant="primary" onClick={ ()=> {this.props.addItem()} } >
                             Buy Now
                         </Button>
                         <Button variant="secondary" onClick={this.handleClose}>
@@ -126,7 +124,7 @@ class Home extends React.Component {
                                             <p>{item.brand_name}</p>
                                         </Card.Text>
                                         <p className="price">฿ {(Number(item.p_price).toLocaleString())}</p>
-                                        <Button variant="primary" style={{width: '100%'}}>Buy Now</Button>
+                                        <Button variant="primary" style={{width: '100%'}} onClick={() => { this.setState({product: item}); this.handleShow();}}>Buy Now</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>

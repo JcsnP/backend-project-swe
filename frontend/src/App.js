@@ -13,10 +13,7 @@ import Footer from './components/Footer';
 import Admin from './pages/Admin';
 import CreateProducts from './pages/CreateProducts';
 import UpdateProducts from './pages/UpdateProducts';
-import ProductDetails from './pages/ProductDetails';
 import Menu from './components/Menu';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// <Route path="/product-details" component={ProductDetails} />
 class App extends React.Component {
 
   render() {
@@ -42,5 +39,7 @@ class App extends React.Component {
   }
 
 }
+
+// เปลี่ยนจาก home -> menu
 
 export default App;
