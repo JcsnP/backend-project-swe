@@ -3,8 +3,6 @@ import axios from 'axios';
 import { Container, Modal, Row, Col, Card, Button } from "react-bootstrap";
 // import { Link } from 'react-router-dom';
 import './Home.css';
-import Menu from '../components/Menu';
-// import ProductDetails from './ProductDetails';
 
 class Home extends React.Component {
     constructor(props) {
@@ -124,7 +122,7 @@ class Home extends React.Component {
                                             <p>{item.brand_name}</p>
                                         </Card.Text>
                                         <p className="price">฿ {(Number(item.p_price).toLocaleString())}</p>
-                                        <Button variant="primary" style={{width: '100%'}} onClick={() => { this.setState({product: item}); this.handleShow();}}>Buy Now</Button>
+                                        <Button variant="primary" style={{width: '100%'}} onClick={() => { this.setState({product: item}); this.handleShow();}}>View</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
